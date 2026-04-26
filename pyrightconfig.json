@@ -1,0 +1,11 @@
+{
+  "pythonVersion": "3.9",
+  "pythonPlatform": "Darwin",
+  "venvPath": "./backend",
+  "venv": "venv",
+  "analysis": {
+    "include": ["backend"],
+    "exclude": []
+  },
+  "typeCheckingMode": "basic"
+}
