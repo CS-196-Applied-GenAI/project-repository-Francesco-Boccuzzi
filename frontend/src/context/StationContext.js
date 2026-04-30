@@ -4,7 +4,8 @@ import React, { createContext, useContext, useState, useCallback } from "react";
 import { searchStations } from "../services/api";
 
 // Create the context
-const StationContext = createContext();
+// Add 'export' here
+export const StationContext = createContext();
 
 /**
  * Provider component for station state management

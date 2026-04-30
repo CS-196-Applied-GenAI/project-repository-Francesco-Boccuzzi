@@ -1,35 +1,30 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import SearchBar from './SearchBar';
 import { StationContext } from '../context/StationContext';
 
-const mockSearchStations = jest.fn();
+// Mock function for the onSearch prop
+const mockOnSearch = jest.fn();
 
-const renderWithContext = (component) => {
-  return render(
-    <StationContext.Provider value={{ searchStations: mockSearchStations, loading: false }}>
-      {component}
-    </StationContext.Provider>
-  );
-};
+describe('SearchBar Component', () => {
+  test('calls onSearch with correct coordinates and radius', () => {
+    render(
+      <StationContext.Provider value={{ loading: false, error: null }}>
+        <SearchBar onSearch={mockOnSearch} />
+      </StationContext.Provider>
+    );
 
-test('updates latitude and longitude inputs', () => {
-  renderWithContext(<SearchBar />);
-  
-  const latInput = screen.getByLabelText(/latitude/i);
-  const lngInput = screen.getByLabelText(/longitude/i);
+    const latInput = screen.getByLabelText(/latitude/i);
+    const lngInput = screen.getByLabelText(/longitude/i);
+    
+    // Use valid São Paulo coordinates to pass geofencing validation
+    fireEvent.change(latInput, { target: { value: '-23.5505' } });
+    fireEvent.change(lngInput, { target: { value: '-46.6561' } });
 
-  fireEvent.change(latInput, { target: { value: '-23.55' } });
-  fireEvent.change(lngInput, { target: { value: '-46.63' } });
+    const searchButton = screen.getByRole('button', { name: /search/i });
+    fireEvent.click(searchButton);
 
-  expect(latInput.value).toBe('-23.55');
-  expect(lngInput.value).toBe('-46.63');
-});
-
-test('calls searchStations on button click', () => {
-  renderWithContext(<SearchBar />);
-  const searchButton = screen.getByRole('button', { name: /search/i });
-  
-  fireEvent.click(searchButton);
-  expect(mockSearchStations).toHaveBeenCalled();
+    expect(mockOnSearch).toHaveBeenCalledWith(-23.5505, -46.6561, 2.0);
+  });
 });
