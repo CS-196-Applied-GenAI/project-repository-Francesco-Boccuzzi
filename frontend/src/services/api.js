@@ -1,7 +1,8 @@
 /* API service for communicating with the backend */
 
 import axios from "axios";
-import { API_BASE_URL } from "./config";
+// Corrected path to go up one level to find config.js
+import { API_BASE_URL } from '../config';
 
 // Create axios instance with default configuration
 const apiClient = axios.create({
