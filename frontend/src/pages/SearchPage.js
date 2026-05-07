@@ -77,7 +77,7 @@ const SearchPage = () => {
         {/* Service Not Available Message */}
         {showMessage && (
           <div className="message-container">
-            <p className="service-message">service not available</p>
+            <p className="service-message">Sorry, this service is not available yet</p>
           </div>
         )}
       </div>
