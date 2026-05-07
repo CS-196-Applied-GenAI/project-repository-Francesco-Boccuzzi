@@ -1,9 +1,15 @@
-/* Global styles and CSS reset */
+/* Global styles for GasPriceTracker */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -12,30 +18,37 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
+  background-color: #fafaf8;
 }
 
-#root {
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+/* Light pastel color palette */
+:root {
+  --pastel-bg: #fafaf8;
+  --pastel-light-blue: #d4e7f5;
+  --pastel-light-pink: #f5d4e7;
+  --pastel-light-green: #d4f5e7;
+  --pastel-light-yellow: #f5f0d4;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --border-color: #e0e0e0;
 }
 
-/* Scrollbar styling */
+/* Remove scrollbar visibility for cleaner look */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
+  background: #ccc;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #999;
 }
+
